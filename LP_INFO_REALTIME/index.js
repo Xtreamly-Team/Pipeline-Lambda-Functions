@@ -95,6 +95,7 @@ export const handler = async (event) => {
         const pool = inputMessage['pool']
         const fee = inputMessage['fee']
         const result = await getData(pool.address, tokenInDecimals, tokenOutDecimals, provider);
+        result.blockNumber = blockNumber
         console.log("RESULT: \n" + JSON.stringify(result, null, 2));
         await sendSNSMessage(JSON.stringify(result), 'arn:aws:sns:eu-west-2:893048150390:NewLPInfo')
     }
